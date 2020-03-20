@@ -4,7 +4,7 @@ import { jsx, css } from "@emotion/core"
 
 export default ({ children }) => {
   return (
-    <section>
+    <section css={{}}>
       <h2>ご飯が好き</h2>
       <p css={{ fontSize: "1.5rem" }}>
         どっちは今ぼんやりこういう修養方というののためになさいますた。
