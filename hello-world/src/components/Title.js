@@ -4,18 +4,21 @@ import { jsx, css } from "@emotion/core"
 import { Reveal } from "react-genie"
 
 const titleStyle = css({
+  fontSize: "3rem",
+  lineHeight: 2,
+
   "&:after": {
     display: "block",
     width: "0%",
     transform: "1s",
     transition: "width 1s",
-    borderBottom: "4px solid #3D95CC",
+    borderBottom: "6px solid #3D95CC",
     content: `""`,
   },
   ".animated &:after": {
     display: "block",
     width: "100%",
-    borderBottom: "4px solid #3D95CC",
+    borderBottom: "6px solid #3D95CC",
     content: `""`,
   },
 })
