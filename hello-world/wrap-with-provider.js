@@ -1,8 +1,15 @@
 import React from "react"
 import { Provider } from "react-redux"
-import { ParallaxProvider, Parallax } from "react-scroll-parallax"
+//import { ParallaxProvider } from "react-scroll-parallax"
+import { MDXProvider } from "@mdx-js/react"
 
 import createStore from "./src/state/createStore"
+import MyParagraph from "./src/components/Paragraph"
+
+const components = {
+  p: MyParagraph,
+  //icons: Icons,
+}
 
 export default ({ element }) => {
   // Instantiating store in `wrapRootElement` handler ensures:
@@ -10,8 +17,8 @@ export default ({ element }) => {
   //  - it will be called only once in browser, when React mounts
   const store = createStore
   return (
-    <ParallaxProvider>
+    <MDXProvider components={components}>
       <Provider store={store}>{element}</Provider>
-    </ParallaxProvider>
+    </MDXProvider>
   )
 }
