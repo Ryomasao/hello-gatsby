@@ -1,45 +1,53 @@
-import React from "react"
+import React, { useState } from "react"
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core"
+import { Reveal } from "react-genie"
 
 import CombatPower from "./CombatPower"
 
-export default ({ title, children, status = {}, skills = [] }) => {
+export default ({ children, status = {}, skills = [] }) => {
+  const [showPower, setShowPower] = useState(false)
+
   return (
-    <div>
-      <h2 css={{ margin: 0 }}>{title}</h2>
-      <div css={{ display: "flex", alignItems: "center" }}>
-        <div css={{ width: "50%" }}>{children}</div>
-        <div css={{ width: "50%", textAlign: "center" }}>
-          <h4>戦闘力(自分調べ)</h4>
-          <CombatPower {...status} />
-          <div
-            css={{
-              width: "60%",
-              margin: " 30px auto 0 auto",
-            }}
-          >
-            <h4>経験したWebに必要な技術スタック</h4>
-            {skills.length === 0 && <p>とくになし😫</p>}
-            <div css={{ display: "flex", flexWrap: "wrap" }}>
-              {skills.map((skill, index) => (
-                <label
+    <div css={{ marginBottom: "30px" }}>
+      <Reveal delay={1000} onShowDone={() => setShowPower(true)}>
+        <div css={{ display: "flex", alignItems: "center" }}>
+          <div css={{ width: "50%" }}>{children}</div>
+          <div css={{ width: "50%", textAlign: "center" }}>
+            {showPower && (
+              <React.Fragment>
+                <h4>戦闘力(自分調べ)</h4>
+                <CombatPower {...status} />
+                <div
                   css={{
-                    display: "inline-block",
-                    border: `3px solid ${skill.color}`,
-                    borderRadius: "10px",
-                    marginTop: "4px",
-                    marginRight: "4px",
-                    padding: "2px 8px",
+                    width: "60%",
+                    margin: " 30px auto 0 auto",
                   }}
                 >
-                  {skill.label}
-                </label>
-              ))}
-            </div>
+                  <h4>経験したWebに必要な技術スタック</h4>
+                  {skills.length === 0 && <p>とくになし😫</p>}
+                  <div css={{ display: "flex", flexWrap: "wrap" }}>
+                    {skills.map((skill, index) => (
+                      <label
+                        css={{
+                          display: "inline-block",
+                          border: `3px solid ${skill.color}`,
+                          borderRadius: "10px",
+                          marginTop: "4px",
+                          marginRight: "4px",
+                          padding: "2px 8px",
+                        }}
+                      >
+                        {skill.label}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </React.Fragment>
+            )}
           </div>
         </div>
-      </div>
+      </Reveal>
     </div>
   )
 }

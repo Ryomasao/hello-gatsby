@@ -4,7 +4,12 @@ import { Global, jsx, css } from "@emotion/core"
 import { Link } from "gatsby"
 import Helmet from "react-helmet"
 
-const globalCSS = css({})
+const globalCSS = css({
+  ".mark": {
+    background: "linear-gradient(transparent 75%, #fff799 75%)",
+    fontWeight: "bold",
+  },
+})
 
 const getPageNo = uri => {
   if (!uri) return
@@ -21,7 +26,7 @@ export default ({ children, currentUri }) => {
 
   // TODO 適当
   const hasBeforePage = currentPageNo > 0
-  const hasNextPage = currentPageNo < 5
+  const hasNextPage = currentPageNo < 8
 
   return (
     <React.Fragment>

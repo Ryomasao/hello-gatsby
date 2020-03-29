@@ -40,6 +40,9 @@ const CombatPower = ({
         fontSize: 20,
       },
     },
+    animation: {
+      duration: 2000,
+    },
   }
 
   return (

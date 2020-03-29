@@ -1,15 +1,20 @@
 ---
-title: "フロントエンジニアに必要なスキル"
+title: "2020年のフロントエンド"
 date: "2020-04-01"
 ---
 
-## WebDeveloperRoadMap 2020より
+import Icons from "../src/components/Icons.js"
+import Butasan from "../src/components/Butasan.js"
 
+## 最近のフロントの役割
 
-![developer-roadmap](./images/frontend.png)
+### デザイナーが作成したデザイン通りに画面を表示する
+- イラストレーター等で作成したデザインを部品ごとに分解して、部品ごとに作成、管理して再利用しやすいようにしよう。
 
-<div style={{textAlign:'right'}}>
-    <a href="https://github.com/kamranahmedse/developer-roadmap">developer-roadmap</a>
-</div>
+### UI/UXを重視したWebサイトの構築
 
+- サーバーアクセスの度に、画面がリセットされるのは避けたい。サーバーへのリクエストはAjaxで行おう。
+- 業務ロジックはサーバーでだけじゃなくってフロントにも持たせよう。
+- ユーザーの入力状態に応じて、リアルタイムに結果を画面に反映させよう。
 
+<Butasan name="すこし不安になるぶたさん" text="守備範囲が増えたってことなのかしら。なんとかなるかな?"/>

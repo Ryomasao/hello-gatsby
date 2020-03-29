@@ -1,16 +1,59 @@
 ---
-title: ""
+title: "変化した開発環境"
 date: "2020-04-01"
 ---
 
-<div style="width: 100%; height: 100vh">
-    <div style="
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-size: 8rem;
-    ">
-        覚えること多すぎ問題
-    </div>
+import Icons from "../src/components/Icons.js"
+import Butasan from "../src/components/Butasan.js"
+import Master from "../src/components/Master.js"
+
+<Butasan name="コードを書き終えたぶたさん" text="ひとまず教科書どおりにHTML + CSS + javascriptが少し書けるようになったよ。"/>
+
+
+<br/>
+
+```html
+<div>
+  <label>カウンター:</label>
+  <p>0</p>
+  <button id="button">カウントアップ</button>
 </div>
+<script src="./jquery.js"></script>
+<script src="./hoge.js"></script>
+<script src="./fuga.js"></script>
+
+```
+
+```css
+#button {
+  color: red;
+}
+
+```
+
+```javascript
+// ボタンをカウントアップさせる処理
+var element =  document.getElementById('button')
+  element.addEventListenr = function() {
+  // TODO ボタンの値を変更する
+}
+
+
+```
+
+<br/>
+
+## しかし現場では、
+
+<Master name="偉い人" text={`
+・変数宣言にvarはもう使わないでください。効率的に開発できるようにES6構文を学んでください。
+ただし、IEでも使うのでBabelも使ってトランスパイルしてください。
+・インデント位置がずれてます。Eslint、Prettier等を使って、コード整形できるようにしてください。
+・jqueryを個別に読み込んでますが、パッケージマネージャーを使って開発できるようにしてください。
+・hoge.jsとfuga.jsですが、ひとつのjsファイルにバンドルしたほうがよくないですか？
+・DOM操作は直接したくなので、VueやReactのような仮想DOMのフレームワークを使ってくれませんか？
+・CSSは別ファイルではなく、jsに含んでくれたほうがうれしいです。
+`}/>
+
+
+<Butasan name="言葉を失うぶたさん" text=""/>
