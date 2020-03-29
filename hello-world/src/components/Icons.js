@@ -6,7 +6,7 @@ import DynamicImage from "../components/DynamicImage"
 
 export default ({ srcs, title }) => {
   return (
-    <div>
+    <div css={{ padding: "10px" }}>
       <div>{title && <span css={{ color: "#9a9a9a" }}>{title}</span>}</div>
       <div css={{ display: "flex", flexWrap: "wrap" }}>
         {srcs.map((src, index) => (

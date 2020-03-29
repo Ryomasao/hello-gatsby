@@ -23,20 +23,6 @@ export default props => {
 
 export const query = graphql`
   query {
-    fixedImage: file(relativePath: { eq: "Hero.jpg" }) {
-      childImageSharp {
-        fixed(width: 125, height: 125) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    fluidImage: file(relativePath: { eq: "Hero.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 800) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
     bg: file(relativePath: { eq: "Hero3.jpg" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {

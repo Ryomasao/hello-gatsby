@@ -21,7 +21,7 @@ export default ({ children, currentUri }) => {
 
   // TODO 適当
   const hasBeforePage = currentPageNo > 0
-  const hasNextPage = currentPageNo < 3
+  const hasNextPage = currentPageNo < 5
 
   return (
     <React.Fragment>

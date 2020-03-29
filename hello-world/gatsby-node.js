@@ -18,11 +18,16 @@ exports.createPages = async ({ actions, graphql }) => {
   `)
 
   mdx.data.allMdx.edges.forEach(({ node }) => {
+    const slug = node.fields.slug
+    const component =
+      slug === "/about/"
+        ? "./src/templates/aboutTemplate.js"
+        : "./src/templates/slideTemplate.js"
     createPage({
-      path: node.fields.slug,
-      component: require.resolve(`./src/templates/slide-mdx.js`),
+      path: slug,
+      component: require.resolve(component),
       context: {
-        slug: node.fields.slug,
+        slug: slug,
       },
     })
   })

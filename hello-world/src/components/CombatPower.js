@@ -1,5 +1,5 @@
 import React from "react"
-import { Radar } from "react-chartjs-2"
+import { Radar, defaults } from "react-chartjs-2"
 
 const CombatPower = ({
   front = 0,
@@ -12,7 +12,7 @@ const CombatPower = ({
     labels: ["Front", "BackEnd", "DevOps", "Analyze", "TeamWork"],
     datasets: [
       {
-        label: "2018年",
+        label: "戦闘力(自分調べ)",
         backgroundColor: "rgba(255,99,132,0.3)",
         borderColor: "rgba(255,99,132,1)",
         pointBackgroundColor: "rgba(255,99,132,1)",
@@ -26,12 +26,22 @@ const CombatPower = ({
       angleLines: {
         display: true,
       },
+      pointLabels: {
+        fontSize: 20,
+      },
       ticks: {
         suggestedMin: 0,
         suggestedMax: 10,
       },
     },
+    legend: {
+      display: false,
+      labels: {
+        fontSize: 20,
+      },
+    },
   }
+
   return (
     <div>
       <Radar data={chartData} options={options} />

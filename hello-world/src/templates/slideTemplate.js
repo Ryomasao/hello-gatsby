@@ -10,29 +10,17 @@ import Title from "../components/Title"
 export default props => {
   const { uri, data } = props
   const post = data.mdx
+  const { frontmatter, body } = post
+  const { title } = frontmatter
 
   return (
     <Layout currentUri={uri}>
-      <section>
-        <Title>{post.frontmatter.title}</Title>
-      </section>
-      <div css={{ width: "15%" }}>
-        <svg>
-          <g fill="none">
-            <path d="M10 80 Q 95 10 180 80" strokeWidth="5" stroke="red"></path>
-          </g>
-        </svg>
-        <svg>
-          <g fill="none">
-            <path
-              d="M10 100 Q 95 10 200 70"
-              strokeWidth="5"
-              stroke="red"
-            ></path>
-          </g>
-        </svg>
-      </div>
-      <MDXRenderer>{post.body}</MDXRenderer>
+      {title && (
+        <section>
+          <Title>{title}</Title>
+        </section>
+      )}
+      <MDXRenderer>{body}</MDXRenderer>
     </Layout>
   )
 }
