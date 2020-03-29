@@ -1,184 +1,99 @@
-# 読んだものメモ
+<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
+<p align="center">
+  <a href="https://www.gatsbyjs.org">
+    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  Gatsby's hello-world starter
+</h1>
 
-基本的な使い方
-https://www.gatsbyjs.org/docs/recipes/pages-layouts
+Kick off your project with this hello-world boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
-- `yarn build`でデプロイ用リソースを作成する。
-- `yarn serve`でおそらく public ディレクトリをドキュメントルートとした dev-server が起動する
-- `pages`配下に、js を置くか、`gatsby-node.js`にページを作成する処理を書くかで、新しいページを作成することができる
-- `Link`を使うと SPA 遷移となる。`a`タグだと、サーバアクセスするけど、対象の html も build 時に作られているので、問題なく参照できる。やばい。とはいえ、`a`タグだと、取得するリソースも多いし、Gatsby の preFetch(あんま理解してない)機能が生きないので、普通に SPA 遷移しよう。
+_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
 
-なぜかチュートリアルを飛ばしてたので、つまみぐいしてく。
-https://www.gatsbyjs.org/tutorial/
+## 🚀 Quick start
 
-## Data Fetching
+1.  **Create a Gatsby site.**
 
-一番興味深い部分
-https://www.gatsbyjs.org/tutorial/part-four/
+    Use the Gatsby CLI to create a new site, specifying the hello-world starter.
 
-コンポーネントに、GraphQL を直接書く。GraphQL チュートリアルで`Query`コンポーネントでラップされてると思うとわかりやすい。取得したデータは、props 経由で渡される。
+    ```shell
+    # create a new Gatsby site using the hello-world starter
+    gatsby new my-hello-world-starter https://github.com/gatsbyjs/gatsby-starter-hello-world
+    ```
 
-```jsx
-import React from "react";
-import { Link, graphql } from "gatsby";
+1.  **Start developing.**
 
-export default ({ data }) => {
-  return (
-    <div>
-      <h1>{data.site.siteMetadata.title}</h1>
-    </div>
-  );
-};
+    Navigate into your new site’s directory and start it up.
 
-export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
-```
+    ```shell
+    cd my-hello-world-starter/
+    gatsby develop
+    ```
 
-上記例は、PageQuery ってもので、ページ配下のものしか使えないとのこと。
-`useStaticQuery`を使うとテンプレートとかでも使えるっぽ。
+1.  **Open the source code and start editing!**
 
-データの取得は、この例だと`yarn build`時に行われていて、`public/page-data/about/page-data.json`に取得結果が吐かれてた。SPA 遷移であれば、コンポーネントか、その json を取得してレンダリングしていると思われる。
-HTML には、データが展開されてた。あれ、つまり SSR が実現されている？
-外部通信する例も試したい。
+    Your site is now running at `http://localhost:8000`!
 
-## markdown をデータソースとして使う
+    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-GraphQL のツールにアクセスすると、Query に`allFile`、`file`っていうものがある。
-参照してもからっぽなんだけど、`gatsby-source-filesystem`を導入するとなんかやばい。
-ビルド時に指定したパス配下にあるファイルを GraphQL が参照できる形に変換してるっぽい。
-結果`allFile`から参照できるようになる。
+    Open the `my-hello-world-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
-マークダウンをデータソースとして使う場合、`gatsby-transformer-remark`を使う。
-流れ的にこんなかんじっぽい。
-ファイル →`gatsby-source-filesystem`が FileNode を作る →`gatsby-transformer-remark`がさらに MarkDownRemarkNode をつくる。
-AST 入門でやったように、コードを構文木で持たせると便利のように、木構造でデータをもってるんだね。
+## 🧐 What's inside?
 
-上記プラグインを設定するだけで、page コンポーネントから gql でデータをとってこれる。すごい。
+A quick look at the top-level files and directories you'll see in a Gatsby project.
 
-一方、ブログの詳細ページのように、ページそのものをつくる場合、`gatsby-node.js`で`createPage`をする必要がある。
+    .
+    ├── node_modules
+    ├── src
+    ├── .gitignore
+    ├── .prettierrc
+    ├── gatsby-browser.js
+    ├── gatsby-config.js
+    ├── gatsby-node.js
+    ├── gatsby-ssr.js
+    ├── LICENSE
+    ├── package-lock.json
+    ├── package.json
+    └── README.md
 
-ページをつくるには、URL とデータと使うコンポーネントを決めるだけでいい。
+1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
 
-```js
-createPage({
-  path: `/${dog.name}`,
-  component: require.resolve(`./src/templates/dog-template.js`),
-  context: { dog }
-});
-```
+2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
 
-データをとってくるにあたって、build を流れをみると以下のようなっていた。
+3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
 
-```
-// 省略
-success source and transform nodes ← ここで、FileNodeをつくったりしてる。後続にこのNodeからschemaをつくる処理があるはず
-//省略
-success createPages - 0.052s ←ここでPageをつくる
-```
+4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
 
-データは、createPage を実行する際には GraphQL の準備は整っていて、データを取得することができる。
-仮に、GraphQL 側にデータを追加で持たせたい場合は以下の`onCreateNode`で Node にデータを追加することで対応できる。
+5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
 
-以下は、ファイル名を MarkdownRemark の Node に追加している。
-これにより createPage 時に、GraphQL を使ってファイル名を取得することができる！
+6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
 
-```js
-const { createFilePath } = require(`gatsby-source-filesystem`);
+7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
 
-exports.onCreateNode = props => {
-  const { node, getNode, actions } = props;
-  const { createNodeField } = actions;
+8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
 
-  // BabelのASTを思い出す
-  // 対象のノードがMarkDownRemarkのときに処理をするよ
-  if (node.internal.type === "MarkdownRemark") {
-    // /my-first-page/
+9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
 
-    // MarkDownRemarksNodeから、ファイル名を取得するヘルパ関数
-    // どうやらMarkDownRemarksの親はFileNodeっぽい。ほんでDir情報とかもそっちにもってる
-    // なので、ヘルパ関数を使わなくとも、以下で取得できる
-    //   const fileNode = getNode(node.parent)
-    //   console.log(fileNode.relativePath)
-    const slug = createFilePath({ node, getNode, basePath: `pages` });
+10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
 
-    // Nodeをさわるときは、専用の関数を使うんだよ
-    // こうすると、filedsノードができて、その配下につくったnodeがぶらさがる
-    createNodeField({
-      node,
-      name: "slug",
-      value: slug
-    });
-  }
-};
-```
+11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
-あとは、createPage するだけ。
+12. **`README.md`**: A text file containing useful reference information about your project.
 
-```js
-const result = await graphql(`
-  query {
-    allMarkdownRemark {
-      edges {
-        node {
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  }
-`);
+## 🎓 Learning Gatsby
 
-result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-  createPage({
-    path: node.fields.slug,
-    // require()は、node.jsでファイルをここに展開しちゃう。require.resolve()は、ファイルの絶対パスを取得するだけ。
-    component: require.resolve(`./src/templates/blog-post.js`),
-    context: {
-      // Data passed to context is available
-      // in page queries as GraphQL variables.
-      // これが不思議。記事を特定できるためのslugを渡して、ページ側で再度GraphQLを呼び出してる
-      // ページの全情報をぶっこむのは悪手かしら。
-      //　→結局buildフェーズで全部jsonになるんだからかわんない。であれば、keyだけ渡して、ペーズ側で必要な情報を取得するほうがわかりやすい
-      slug: node.fields.slug
-    }
-  });
-});
-```
+Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
 
-## ライフサイクル
+- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
 
-これが一番知りたかった！
-build→SSR→browser ってやってくれてる。
-https://qiita.com/kikuchi_kentaro/items/985b182a78c3553981ee
-https://www.gatsbyjs.org/docs/gatsby-lifecycle-apis/
+- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
 
-とはいえ、SSR でなにやるんだろう。build フェーズで全部やっててやることあるのかね。
-あー、別に SSR だからサーバサイドでなんかやるとかじゃなくって、build フェーズのひとつに SSR があるって思えばよさそう。
-※ ↑ の Qiita のページに書いてあったね、、、、
-https://medium.com/narative/understanding-gatsbys-lifecycle-31c473ba2f2d
+## 💫 Deploy
 
-```
-gatby build の最後に、各ページを React Component として動作 ( renderToString ) させ、初期表示用の静的 HTML が生成される。
-```
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-hello-world)
 
-この処理は特別設定はいらなくって、デフォルトでやってくれてる。Redux を使いたいときに、Root コンポーネントをラップする処理を書くぐらいっぽい。
+[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/gatsbyjs/gatsby-starter-hello-world)
 
-https://github.com/gatsbyjs/gatsby/blob/master/examples/using-redux/src/state/createStore.js
-
-`gatsby-browser.js`と`gatsby-ssr.js`の両方の書く必要がありそう。
-`gatsby-ssr.js`に書かないと、`yarn build`で store がねえぞっでこける。
-NOSSR 的なオプションあるんかな。
-
-ちなみに build で作成した html の値を直接変更して、ブラウザでみると、初回は html の値だけど、React が mount されたあとに書き換わることが確認できる。
-
-## あとで使いたい
-
-https://coliss.com/articles/build-websites/operation/javascript/react-components-for-scroll-into-the-viewport.html
+<!-- AUTO-GENERATED-CONTENT:END -->
