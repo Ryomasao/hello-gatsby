@@ -9,12 +9,14 @@ import Title from "../components/Title"
 
 export default props => {
   const { uri, data } = props
-  const post = data.mdx
+  const post = data.page
   const { frontmatter, body } = post
   const { title } = frontmatter
 
+  const maxPageNo = data.pages.edges.length
+
   return (
-    <Layout currentUri={uri}>
+    <Layout currentUri={uri} maxPageNo={maxPageNo}>
       {title && (
         <section>
           <Title>{title}</Title>
@@ -27,10 +29,17 @@ export default props => {
 
 export const query = graphql`
   query($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
+    page: mdx(fields: { slug: { eq: $slug } }) {
       body
       frontmatter {
         title
+      }
+    }
+    pages: allMdx(filter: { frontmatter: { type: { eq: "slide" } } }) {
+      edges {
+        node {
+          id
+        }
       }
     }
   }

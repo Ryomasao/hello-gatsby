@@ -22,12 +22,11 @@ const getPageNo = uri => {
   }
 }
 
-export default ({ children, currentUri }) => {
+export default ({ children, currentUri, maxPageNo }) => {
   const currentPageNo = parseInt(getPageNo(currentUri))
 
-  // TODO 適当
   const hasBeforePage = currentPageNo > 0
-  const hasNextPage = currentPageNo < 8
+  const hasNextPage = currentPageNo < maxPageNo
 
   const nextPage = React.useCallback(() => {
     navigate(`/page${currentPageNo + 1}`)
