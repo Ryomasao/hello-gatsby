@@ -5,6 +5,8 @@ import { Link, navigate } from "gatsby"
 import { HotKeys } from "react-hotkeys"
 import Helmet from "react-helmet"
 
+import BreadCrumb from "./BreadCrumb"
+
 const globalCSS = css({
   ".mark": {
     background: "linear-gradient(transparent 75%, #fff799 75%)",
@@ -44,12 +46,13 @@ export default ({ children, currentUri, maxPageNo }) => {
   const dummyElement = React.useRef(null)
 
   React.useEffect(() => {
-    dummyElement.current.focus()
+    if (dummyElement.current) {
+      dummyElement.current.focus()
+    }
   }, [])
 
   return (
     <HotKeys handlers={handlers}>
-      <div ref={dummyElement} tabIndex={1}></div>
       <React.Fragment>
         <Helmet>
           <link
@@ -59,6 +62,11 @@ export default ({ children, currentUri, maxPageNo }) => {
         </Helmet>
         <Global styles={globalCSS} />
         <div css={{ width: "calc(100% - 100px)", margin: "0 auto" }}>
+          <BreadCrumb
+            css={{ width: "60%", margin: "10px auto 0" }}
+            max={maxPageNo}
+            currentNo={currentPageNo}
+          />
           {children}
         </div>
         {hasBeforePage && (
@@ -71,8 +79,11 @@ export default ({ children, currentUri, maxPageNo }) => {
               left: 0,
             }}
           >
-            <Link to={currentPageNo === 1 ? "/" : `/page${currentPageNo - 1}`}>
-              前へ
+            <Link
+              to={currentPageNo === 1 ? "/" : `/page${currentPageNo - 1}`}
+              css={{ color: "gray", textDecoration: "none", padding: "5px" }}
+            >
+              Prev
             </Link>
           </div>
         )}
@@ -86,7 +97,13 @@ export default ({ children, currentUri, maxPageNo }) => {
               right: 0,
             }}
           >
-            <Link to={`/page${currentPageNo + 1}`}>次へ</Link>
+            <Link
+              to={`/page${currentPageNo + 1}`}
+              css={{ color: "gray", textDecoration: "none", padding: "5px" }}
+              ref={dummyElement}
+            >
+              Next
+            </Link>
           </div>
         )}
       </React.Fragment>
