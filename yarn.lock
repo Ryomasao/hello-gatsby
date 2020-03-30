@@ -11383,6 +11383,13 @@ react-hot-loader@^4.12.18:
     shallowequal "^1.1.0"
     source-map "^0.7.3"
 
+react-hotkeys@^2.0.0-pre9:
+  version "2.0.0-pre9"
+  resolved "https://registry.yarnpkg.com/react-hotkeys/-/react-hotkeys-2.0.0-pre9.tgz#7a64143dcf136d3598d82fc35dbab47b538dd6c3"
+  integrity sha512-YujzB+kGB5F6rq6/NkNN2t3uSwYfBsC9qWligGKyDe7roMSmzFYO2N88mwSc+9zmHhy/ZrDyB+aqbzVIaK8haw==
+  dependencies:
+    prop-types "^15.6.1"
+
 react-intersection-observer@^8.24.2:
   version "8.26.1"
   resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.26.1.tgz#0d72e54eb00d7710d9e8dc1109cc09791e06bb1b"

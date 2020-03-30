@@ -1,7 +1,8 @@
 import React from "react"
 /** @jsx jsx */
 import { Global, jsx, css } from "@emotion/core"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
+import { HotKeys } from "react-hotkeys"
 import Helmet from "react-helmet"
 
 const globalCSS = css({
@@ -28,46 +29,68 @@ export default ({ children, currentUri }) => {
   const hasBeforePage = currentPageNo > 0
   const hasNextPage = currentPageNo < 8
 
+  const nextPage = React.useCallback(() => {
+    navigate(`/page${currentPageNo + 1}`)
+  }, [currentPageNo])
+
+  const prevPage = React.useCallback(() => {
+    navigate(currentPageNo === 1 ? "/" : `/page${currentPageNo - 1}`)
+  }, [currentPageNo])
+
+  const handlers = {
+    NEXT: nextPage,
+    PREV: prevPage,
+  }
+
+  const dummyElement = React.useRef(null)
+
+  React.useEffect(() => {
+    dummyElement.current.focus()
+  }, [])
+
   return (
-    <React.Fragment>
-      <Helmet>
-        <link
-          href="https://fonts.googleapis.com/css?family=Noto+Sans+JP"
-          rel="stylesheet"
-        />
-      </Helmet>
-      <Global styles={globalCSS} />
-      <div css={{ width: "calc(100% - 100px)", margin: "0 auto" }}>
-        {children}
-      </div>
-      {hasBeforePage && (
-        <div
-          css={{
-            position: "absolute",
-            width: "50px",
-            height: "100vh",
-            top: 0,
-            left: 0,
-          }}
-        >
-          <Link to={currentPageNo === 1 ? "/" : `page${currentPageNo - 1}`}>
-            前へ
-          </Link>
+    <HotKeys handlers={handlers}>
+      <div ref={dummyElement} tabIndex={1}></div>
+      <React.Fragment>
+        <Helmet>
+          <link
+            href="https://fonts.googleapis.com/css?family=Noto+Sans+JP"
+            rel="stylesheet"
+          />
+        </Helmet>
+        <Global styles={globalCSS} />
+        <div css={{ width: "calc(100% - 100px)", margin: "0 auto" }}>
+          {children}
         </div>
-      )}
-      {hasNextPage && (
-        <div
-          css={{
-            position: "absolute",
-            width: "50px",
-            height: "100vh",
-            top: 0,
-            right: 0,
-          }}
-        >
-          <Link to={`page${currentPageNo + 1}`}>次へ</Link>
-        </div>
-      )}
-    </React.Fragment>
+        {hasBeforePage && (
+          <div
+            css={{
+              position: "absolute",
+              width: "50px",
+              height: "100vh",
+              top: 0,
+              left: 0,
+            }}
+          >
+            <Link to={currentPageNo === 1 ? "/" : `/page${currentPageNo - 1}`}>
+              前へ
+            </Link>
+          </div>
+        )}
+        {hasNextPage && (
+          <div
+            css={{
+              position: "absolute",
+              width: "50px",
+              height: "100vh",
+              top: 0,
+              right: 0,
+            }}
+          >
+            <Link to={`/page${currentPageNo + 1}`}>次へ</Link>
+          </div>
+        )}
+      </React.Fragment>
+    </HotKeys>
   )
 }
