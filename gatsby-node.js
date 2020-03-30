@@ -38,7 +38,6 @@ exports.onCreateNode = props => {
   const { createNodeField } = actions
   if (node.internal.type === "Mdx") {
     const slug = createFilePath({ node, getNode, basePath: `content` })
-    console.log(node)
     createNodeField({
       node,
       name: "slug",
