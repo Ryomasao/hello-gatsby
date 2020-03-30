@@ -52,7 +52,7 @@ export default ({ children, currentUri, maxPageNo }) => {
   }, [])
 
   return (
-    <HotKeys handlers={handlers}>
+    <HotKeys handlers={handlers} css={{ outline: "none" }}>
       <React.Fragment>
         <Helmet>
           <link
