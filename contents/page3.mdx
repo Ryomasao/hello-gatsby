@@ -13,6 +13,7 @@ import Master from "../src/components/Master.js"
 
 <br/>
 
+** index.html **
 ```html
 <div>
   <label>カウンター:</label>
@@ -25,6 +26,7 @@ import Master from "../src/components/Master.js"
 
 ```
 
+** style.css **
 ```css
 #button {
   color: red;
@@ -32,6 +34,7 @@ import Master from "../src/components/Master.js"
 
 ```
 
+** hoge.js **
 ```javascript
 // ボタンをカウントアップさせる処理
 var element =  document.getElementById('button')
@@ -44,11 +47,11 @@ var element =  document.getElementById('button')
 
 <br/>
 
-## しかし現場では、
+## Webアプリケーションの世界では
 
 <Master name="偉い人" text={`
 ・変数宣言にvarはもう使わないでください。効率的に開発できるようにES6構文を学んでください。
-ただし、IEでも使うのでBabelも使ってトランスパイルしてください。
+・いろんなブラウザで実行できるように、Babelを使ってトランスパイルしてください。
 ・インデント位置がずれてます。Eslint、Prettier等を使って、コード整形できるようにしてください。
 ・jqueryを個別に読み込んでますが、パッケージマネージャーを使って開発できるようにしてください。
 ・hoge.jsとfuga.jsですが、ひとつのjsファイルにバンドルしたほうがよくないですか？
