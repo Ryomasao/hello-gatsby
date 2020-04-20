@@ -14,6 +14,11 @@ import Icons from "../src/components/Icons.js"
   ]}
 />
 
+
+![syorybook_example](./images/storybook_example.png)
+
+<hr/>
+
 ### SEOやパフォーマンスを意識して、サーバサイドで事前にjavascriptを実行して、レンダリング済みのhtmlを返せるようにしよう。
 
 <Icons
@@ -23,6 +28,9 @@ import Icons from "../src/components/Icons.js"
   ]}
 />
 
+![ssr](./images/ssr.png)
+
+<hr/>
 
 ### 保守性をあげるためにjavascriptにも型システムをもたせよう。
 
@@ -32,13 +40,61 @@ import Icons from "../src/components/Icons.js"
   ]}
 />
 
-### もちろんテストコードでテスト書くよね。
+javascriptの世界
+
+```javascript
+// 誕生年を渡して、年齢を計算する関数っぽいけど、引数のbirthYearは、文字列なのか数値なのかどっちなんだろう、、、
+// 返ってくる値もどっちなんだろう、、、
+function calcAge(birthYear) {
+  // 内部処理は数値がくることを前提に作成されている
+  // 省略
+}
+
+// ええい、ままよ！
+const age = calcAge("2000")
+```
+
+TypeScriptの世界
+
+```javascript
+// 引数も返り値も数値なんだね！
+function calcAge(birthYeaer:number):number {
+  // 省略
+}
+
+// 数値以外の値を渡したら、ちゃんとコンパイルエラーになるんだ！
+const age = calcAge("2000")
+```
+
+<hr/>
+
+### もちろんテストコード書くよね。
 
 <Icons
   srcs={[
     "jest.png",
   ]}
 />
+
+```javascript
+ it('メッセージに「餃子に」が含まれていて、数値がある場合、数値の内容をfirebaseに保存して、メッセージ「🥟から1,000円を入れるね」を返すこと', async () => {
+    const app = await setup()
+    const message = '餃子に1000'
+    const res: any = await request(app)
+      .post('/bot/webhook')
+      .send({ message })
+    expect(res.body).toEqual([
+      {
+        message: {
+          text: '🥟に1,000円を入れるね',
+          type: 'text',
+        },
+      },
+    ])
+  })
+```
+
+<hr/>
 
 ### サーバに要求するデータもフロントから柔軟に要求できるようにしよう。
 
@@ -47,6 +103,10 @@ import Icons from "../src/components/Icons.js"
     "graphql.png",
   ]}
 />
+
+![rest_problem](./images/rest_problem.png)
+
+<hr/>
 
 ### なんならサーバも、Firebaseや、CloudFunction、AWS Lamda + Node.jsを使って、フロントの人間が書いちゃおう。
 
