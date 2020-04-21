@@ -36,9 +36,9 @@ const ballon = css({
   },
 })
 
-export default ({ text, name }) => {
+export default ({ text, name, width = 'auto' }) => {
   return (
-    <div css={{ display: "flex" }}>
+    <div css={{ display: "flex", width }}>
       <div css={{ width: "15%", textAlign: "center", marginTop: "20px" }}>
         <div css={{ textAlign: "center" }}>
           <DynamicImage

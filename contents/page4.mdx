@@ -5,6 +5,7 @@ type: "slide"
 ---
 
 import Icons from "../src/components/Icons.js"
+import Butasan from "../src/components/Butasan"
 
 ###  デザインを部品ごとにばらして、そのカタログを表示するサイトも作ろう。
 
@@ -108,7 +109,7 @@ const age = calcAge("2000")
 
 <hr/>
 
-### なんならサーバも、Firebaseや、CloudFunction、AWS Lamda + Node.jsを使って、フロントの人間が書いちゃおう。
+### なんならサーバ側も、Firebaseや、CloudFunction、AWS Lamda + Node.jsを使って、フロントの人間が書いちゃおう。
 
 <Icons
   srcs={[
@@ -118,6 +119,10 @@ const age = calcAge("2000")
   ]}
 />
 
+<br/>
+<br/>
+<hr/>
+
 ### あれだったら、事前に必要なAPI叩いて、静的サイトにしてセキュリティもパフォーマンスも向上させちゃえ。
 
 <Icons
@@ -125,6 +130,47 @@ const age = calcAge("2000")
     "gatsby.png",
   ]}
 />
+
+![headless](./images/wp.png)
+
+<Butasan 
+name="役割を終えたぶたさん" 
+text={`
+この資料も静的サイトジェネレーターのGatsbyでつくられているんだよ。
+以下のようにマークダウンにReactコンポーネントを埋め込んで、記事を書いているんだ。
+`}
+/>
+
+```mdx
+---
+title: "2020年のフロントエンド"
+date: "2020-04-01"
+---
+
+import Icons from "../src/components/Icons.js"
+import Butasan from "../src/components/Butasan.js"
+
+## 最近のフロントの役割
+
+### デザイナーが作成したデザイン通りに画面を表示する
+- イラストレーター等で作成したデザインを部品ごとに分解して、部品ごとに作成、管理して再利用しやすいようにしよう。
+
+### UI/UXを重視したWebサイトの構築
+
+- サーバーアクセスの度に、画面がリセットされるのは避けたい。サーバーへのリクエストはAjaxで行おう。
+- 業務ロジックはサーバーでだけじゃなくってフロントにも持たせよう。
+- ユーザーの入力状態に応じて、リアルタイムに結果を画面に反映させよう。
+
+<Butasan name="すこし不安になるぶたさん" text="守備範囲が増えたってことなのかしら。なんとかなるかな?"/>
+
+```
+
+<br />
+<br />
+
+<hr/>
+
+
 
 ### javascriptでNativeAppも作れるようにしよう。
 
@@ -134,7 +180,11 @@ const age = calcAge("2000")
   ]}
 />
 
-### いや、Webのままネイティブでしかできなかったことをできようにしよう。
+<br/>
+<br/>
+<hr/>
+
+### いや、Webのままネイティブでしかできなかったことをできるようにしよう。
 
 <Icons
   srcs={[
@@ -145,12 +195,14 @@ const age = calcAge("2000")
 <br/>
 <br/>
 
+<hr/>
+
 ### 今フロントエンドに求められるスキル
 
 - SEO、アクセシビリティを意識したHTMLを書けること。
 - デザイナが作成したデザインをブラウザごとに再現させるCSSを書けること。
 
 <div style={{  color: 'tomato' }}>
-    <h2>・プロダクトに応じた最適な技術選定、構築ができること。</h2>
+    <h2>・プロダクトに応じた最適な技術選定ができること。</h2>
     <h2>→巨人の肩にうまくのれるかどうかで生産性・保守性・拡張性が段違い！</h2>
 </div>

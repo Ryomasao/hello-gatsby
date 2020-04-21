@@ -29,6 +29,7 @@ export default ({ children, status = {}, skills = [] }) => {
                   <div css={{ display: "flex", flexWrap: "wrap" }}>
                     {skills.map((skill, index) => (
                       <label
+                      key={index}
                         css={{
                           display: "inline-block",
                           border: `3px solid ${skill.color}`,

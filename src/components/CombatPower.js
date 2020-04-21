@@ -4,19 +4,19 @@ import { Radar, defaults } from "react-chartjs-2"
 const CombatPower = ({
   front = 0,
   backend = 0,
-  devOps = 0,
+  teamwork = 0,
   analyze = 0,
-  teamWork = 0,
+  management = 0,
 }) => {
   const chartData = {
-    labels: ["Front", "BackEnd", "DevOps", "Analyze", "TeamWork"],
+    labels: ["Front", "BackEnd/DevOps","TeamWork", "Analyze", "Management"],
     datasets: [
       {
         label: "戦闘力(自分調べ)",
         backgroundColor: "rgba(255,99,132,0.3)",
         borderColor: "rgba(255,99,132,1)",
         pointBackgroundColor: "rgba(255,99,132,1)",
-        data: [front, backend, devOps, analyze, teamWork],
+        data: [front, backend, teamwork, analyze, management],
       },
     ],
   }
@@ -31,7 +31,7 @@ const CombatPower = ({
       },
       ticks: {
         suggestedMin: 0,
-        suggestedMax: 10,
+        suggestedMax: 6,
       },
     },
     legend: {
