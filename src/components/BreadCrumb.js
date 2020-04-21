@@ -44,7 +44,7 @@ export default ({ max, currentNo, className }) => {
       {[...Array(max).keys()].map(item => {
         const number = item + 1
         return (
-          <div css={number === currentNo ? activeCircle : circle}>
+          <div css={number === currentNo ? activeCircle : circle} key={number}>
             <span css={number === currentNo ? activeInnerCircle : innerCircle}>
               {number}
             </span>
