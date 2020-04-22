@@ -1,208 +1,63 @@
 ---
-title: "今も尚、止まらない進化"
+title: "変化した開発環境"
 date: "2020-04-01"
 type: "slide"
 ---
 
 import Icons from "../src/components/Icons.js"
-import Butasan from "../src/components/Butasan"
-
-###  デザインを部品ごとにばらして、そのカタログを表示するサイトも作ろう。
-
-<Icons
-  srcs={[
-    "storybook.png",
-  ]}
-/>
-
-
-![syorybook_example](./images/storybook_example.png)
-
-<hr/>
-
-### SEOやパフォーマンスを意識して、サーバサイドで事前にjavascriptを実行して、レンダリング済みのhtmlを返せるようにしよう。
-
-<Icons
-  srcs={[
-    "next.png",
-    "nuxt.png",
-  ]}
-/>
-
-![ssr](./images/ssr.png)
-
-<hr/>
-
-### 保守性をあげるためにjavascriptにも型システムをもたせよう。
-
-<Icons
-  srcs={[
-    "ts.png",
-  ]}
-/>
-
-javascriptの世界
-
-```javascript
-// 誕生年を渡して、年齢を計算する関数っぽいけど、引数のbirthYearは、文字列なのか数値なのかどっちなんだろう、、、
-// 返ってくる値もどっちなんだろう、、、
-function calcAge(birthYear) {
-  // 内部処理は数値がくることを前提に作成されている
-  // 省略
-}
-
-// ええい、ままよ！
-const age = calcAge("2000")
-```
-
-TypeScriptの世界
-
-```javascript
-// 引数も返り値も数値なんだね！
-function calcAge(birthYeaer:number):number {
-  // 省略
-}
-
-// 数値以外の値を渡したら、ちゃんとコンパイルエラーになるんだ！
-const age = calcAge("2000")
-```
-
-<hr/>
-
-### もちろんテストコード書くよね。
-
-<Icons
-  srcs={[
-    "jest.png",
-  ]}
-/>
-
-```javascript
- it('メッセージに「餃子に」が含まれていて、数値がある場合、数値の内容をfirebaseに保存して、メッセージ「🥟から1,000円を入れるね」を返すこと', async () => {
-    const app = await setup()
-    const message = '餃子に1000'
-    const res: any = await request(app)
-      .post('/bot/webhook')
-      .send({ message })
-    expect(res.body).toEqual([
-      {
-        message: {
-          text: '🥟に1,000円を入れるね',
-          type: 'text',
-        },
-      },
-    ])
-  })
-```
-
-<hr/>
-
-### サーバに要求するデータもフロントから柔軟に要求できるようにしよう。
-
-<Icons
-  srcs={[
-    "graphql.png",
-  ]}
-/>
-
-![rest_problem](./images/rest_problem.png)
-
-<hr/>
-
-### なんならサーバ側も、Firebaseや、CloudFunction、AWS Lamda + Node.jsを使って、フロントの人間が書いちゃおう。
-
-<Icons
-  srcs={[
-    "firebase.png",
-    "lamda.png",
-    "cloudfunctions.png",
-  ]}
-/>
-
-<br/>
-<br/>
-<hr/>
-
-### あれだったら、事前に必要なAPI叩いて、静的サイトにしてセキュリティもパフォーマンスも向上させちゃえ。
-
-<Icons
-  srcs={[
-    "gatsby.png",
-  ]}
-/>
-
-![headless](./images/wp.png)
-
-<Butasan 
-name="役割を終えたぶたさん" 
-text={`
-この資料も静的サイトジェネレーターのGatsbyでつくられているんだよ。
-以下のようにマークダウンにReactコンポーネントを埋め込んで、記事を書いているんだ。
-`}
-/>
-
-```mdx
----
-title: "2020年のフロントエンド"
-date: "2020-04-01"
----
-
-import Icons from "../src/components/Icons.js"
 import Butasan from "../src/components/Butasan.js"
+import Master from "../src/components/Master.js"
 
-## 最近のフロントの役割
+<Butasan name="コードを書き終えたぶたさん" text="ひとまず教科書どおりにHTML + CSS + javascriptが少し書けるようになったよ。"/>
 
-### デザイナーが作成したデザイン通りに画面を表示する
-- イラストレーター等で作成したデザインを部品ごとに分解して、部品ごとに作成、管理して再利用しやすいようにしよう。
 
-### UI/UXを重視したWebサイトの構築
+<br/>
 
-- サーバーアクセスの度に、画面がリセットされるのは避けたい。サーバーへのリクエストはAjaxで行おう。
-- 業務ロジックはサーバーでだけじゃなくってフロントにも持たせよう。
-- ユーザーの入力状態に応じて、リアルタイムに結果を画面に反映させよう。
-
-<Butasan name="すこし不安になるぶたさん" text="守備範囲が増えたってことなのかしら。なんとかなるかな?"/>
+** index.html **
+```html
+<div>
+  <label>カウンター:</label>
+  <p>0</p>
+  <button id="button">カウントアップ</button>
+</div>
+<script src="./jquery.js"></script>
+<script src="./hoge.js"></script>
+<script src="./fuga.js"></script>
 
 ```
 
-<br />
-<br />
+** style.css **
+```css
+#button {
+  color: red;
+}
 
-<hr/>
+```
+
+** hoge.js **
+```javascript
+// ボタンをカウントアップさせる処理
+var element =  document.getElementById('button')
+  element.addEventListenr = function() {
+  // TODO ボタンの値を変更する
+}
 
 
-
-### javascriptでNativeAppも作れるようにしよう。
-
-<Icons
-  srcs={[
-    "reactnative.png",
-  ]}
-/>
-
-<br/>
-<br/>
-<hr/>
-
-### いや、Webのままネイティブでしかできなかったことをできるようにしよう。
-
-<Icons
-  srcs={[
-    "pwa.png",
-  ]}
-/>
+```
 
 <br/>
-<br/>
 
-<hr/>
+## Webアプリケーションの世界では
 
-### 今フロントエンドに求められるスキル
+<Master name="偉い人" text={`
+・変数宣言にvarはもう使わないでください。効率的に開発できるようにES6構文を学んでください。
+・いろんなブラウザで実行できるように、Babelを使ってトランスパイルしてください。
+・インデント位置がずれてます。Eslint、Prettier等を使って、コード整形できるようにしてください。
+・jqueryを個別に読み込んでますが、パッケージマネージャーを使って開発できるようにしてください。
+・hoge.jsとfuga.jsですが、ひとつのjsファイルにバンドルしたほうがよくないですか？
+・DOM操作は直接したくなので、VueやReactのような仮想DOMのフレームワークを使ってくれませんか？
+・CSSは別ファイルではなく、jsに含んでくれたほうがうれしいです。
+`}/>
 
-- SEO、アクセシビリティを意識したHTMLを書けること。
-- デザイナが作成したデザインをブラウザごとに再現させるCSSを書けること。
 
-<div style={{  color: 'tomato' }}>
-    <h2>・プロダクトに応じた最適な技術選定ができること。</h2>
-    <h2>→巨人の肩にうまくのれるかどうかで生産性・保守性・拡張性が段違い！</h2>
-</div>
+<Butasan name="言葉を失うぶたさん" text="。。。。"/>

@@ -1,63 +1,29 @@
 ---
-title: "変化した開発環境"
+title: "2020年のフロントエンド"
 date: "2020-04-01"
 type: "slide"
 ---
 
 import Icons from "../src/components/Icons.js"
 import Butasan from "../src/components/Butasan.js"
-import Master from "../src/components/Master.js"
+import Ajax from "../src/components/Ajax.js"
 
-<Butasan name="コードを書き終えたぶたさん" text="ひとまず教科書どおりにHTML + CSS + javascriptが少し書けるようになったよ。"/>
+## 求められる役割
 
+### デザイナーが作成したデザイン通りに画面を作成できること
+- イラストレーター等で作成したデザイン通りに、HTML + CSS + javascript使って、画面を作成する
 
-<br/>
+### UI/UXを重視したWebサイトの構築ができること
 
-** index.html **
-```html
-<div>
-  <label>カウンター:</label>
-  <p>0</p>
-  <button id="button">カウントアップ</button>
+- ページの表示内容を変更する度に、画面がリセットされるのは避けたい。サーバーへのリクエストはAjaxで行おう。
+- ユーザーの入力状態に応じて、リアルタイムに結果を画面に反映させよう。
+- 業務ロジックはサーバーでだけじゃなくってフロントにも持たせよう。
+
+<Ajax />
+
+<div style={{  color: 'tomato' }}>
+    <h3>→WebサイトからWebアプリケーションの世界へ</h3>
 </div>
-<script src="./jquery.js"></script>
-<script src="./hoge.js"></script>
-<script src="./fuga.js"></script>
-
-```
-
-** style.css **
-```css
-#button {
-  color: red;
-}
-
-```
-
-** hoge.js **
-```javascript
-// ボタンをカウントアップさせる処理
-var element =  document.getElementById('button')
-  element.addEventListenr = function() {
-  // TODO ボタンの値を変更する
-}
 
 
-```
-
-<br/>
-
-## Webアプリケーションの世界では
-
-<Master name="偉い人" text={`
-・変数宣言にvarはもう使わないでください。効率的に開発できるようにES6構文を学んでください。
-・いろんなブラウザで実行できるように、Babelを使ってトランスパイルしてください。
-・インデント位置がずれてます。Eslint、Prettier等を使って、コード整形できるようにしてください。
-・jqueryを個別に読み込んでますが、パッケージマネージャーを使って開発できるようにしてください。
-・hoge.jsとfuga.jsですが、ひとつのjsファイルにバンドルしたほうがよくないですか？
-・DOM操作は直接したくなので、VueやReactのような仮想DOMのフレームワークを使ってくれませんか？
-・CSSは別ファイルではなく、jsに含んでくれたほうがうれしいです。
-`}/>
-
-
-<Butasan name="言葉を失うぶたさん" text="。。。。"/>
+<Butasan name="すこし不安になるぶたさん" text="守備範囲が増えたってことなのかしら。なんとかなるかな?"/>
